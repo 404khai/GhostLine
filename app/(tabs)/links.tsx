@@ -9,22 +9,27 @@ import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } fr
 // Mock Data
 const user1 = require('@/assets/images/user1.jpeg');
 const user2 = require('@/assets/images/user2.jpeg');
+const user3 = require('@/assets/images/user3.jpeg');
+const user4 = require('@/assets/images/user4.jpeg');
+const user5 = require('@/assets/images/user5.jpeg');
+const user6 = require('@/assets/images/user6.jpg');
+
 
 const STORIES = [
   { id: '1', name: 'Add Story', isAdd: true },
   { id: '2', name: 'Terry', source: user1 },
-  { id: '3', name: 'Craig', source: user2 },
-  { id: '4', name: 'Roger', source: 'https://i.pravatar.cc/150?u=a04258114e29026302d' },
-  { id: '5', name: 'Nolan', source: 'https://i.pravatar.cc/150?u=a04258114e29026708c' },
+  { id: '3', name: 'Zoe', source: user2 },
+  { id: '4', name: 'AX', source: user3 },
+  { id: '5', name: 'Craig', source: user4 },
 ];
 
 const CHATS = [
-  { id: '1', name: 'Angel Curtis', message: 'Please help me find a good monitor for t...', time: '02:11', unread: 2, source: user1 },
-  { id: '2', name: 'Zaire Dorwart', message: 'Gacor pisan kang', time: '02:11', unread: 0, source: user2 },
-  { id: '3', name: 'Kelas Malam', message: 'Bima : No one can come today?', time: '02:11', unread: 2, source: 'https://i.pravatar.cc/150?u=a04258114e29026302d' },
-  { id: '4', name: 'Jocelyn Gouse', message: 'You\'re now an admin', time: '02:11', unread: 0, source: 'https://i.pravatar.cc/150?u=a04258114e29026708c' },
-  { id: '5', name: 'Jaylon Dias', message: 'Buy back 10k gallons, top up credit, b...', time: '02:11', unread: 0, source: 'https://i.pravatar.cc/150?u=a048581f4e29026701d' },
-  { id: '6', name: 'Chance Rhiel Madsen', message: 'Thank you mate!', time: '02:11', unread: 2, source: 'https://i.pravatar.cc/150?u=a042581f4e29026024d' },
+  { id: '1', name: 'Terry Curtis', message: 'Found a gig for cheap chrome...', time: '02:11', unread: 2, source: user1 },
+  { id: '2', name: 'Zoe Zaine', message: 'New Sandevistans incoming 4pm..', time: '02:11', unread: 0, source: user2 },
+  { id: '3', name: 'AX', message: 'Gotta tread carefully choom...', time: '02:11', unread: 2, source: user3 },
+  { id: '4', name: 'Rhea M', message: 'You\'re now an admin', time: '02:11', unread: 0, source: user5 },
+  { id: '5', name: 'The Wasp', message: 'Implants arrived in one piece, b...', time: '02:11', unread: 0, source: user6 },
+  
 ];
 
 export default function ChatsScreen() {
@@ -38,7 +43,7 @@ export default function ChatsScreen() {
       <View style={styles.header}>
         <Text style={styles.headerTitle}>LINKS</Text>
         <TouchableOpacity style={styles.searchButton}>
-          <Ionicons name="search" size={24} color="#00f0ff" />
+          <Ionicons name="search" size={24} color="#39FF14" />
         </TouchableOpacity>
       </View>
 
@@ -49,15 +54,15 @@ export default function ChatsScreen() {
             {STORIES.map((story, index) => (
               <View key={story.id} style={styles.storyItem}>
                 {story.isAdd ? (
-                  <View style={styles.addStoryCircle}>
-                    <Ionicons name="add" size={30} color="black" />
-                  </View>
+                  <CyberpunkAvatar size={60} backgroundColor="#000000ff">
+                    <Ionicons name="add" size={30} color="#39FF14" />
+                  </CyberpunkAvatar>
                 ) : (
                   <CyberpunkAvatar source={story.source!} size={60} online={true} />
                 )}
                 <Text style={styles.storyName}>{story.name}</Text>
                 {/* Latency indicator */}
-                {!story.isAdd && <Text style={{ fontSize: 10, color: '#00f0ff', fontFamily: 'monospace' }}>12ms</Text>}
+                {!story.isAdd && <Text style={{ fontSize: 10, color: '#39FF14', fontFamily: 'monospace' }}>12ms</Text>}
               </View>
             ))}
           </ScrollView>
@@ -112,10 +117,9 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   headerTitle: {
-    color: '#00f0ff',
+    color: '#39FF14',
     fontSize: 24,
-    fontWeight: 'bold',
-    fontFamily: 'GeistPixelSquare',
+    fontFamily: 'Doto_700Bold',
   },
   searchButton: {
     padding: 5,
@@ -128,16 +132,6 @@ const styles = StyleSheet.create({
   storyItem: {
     alignItems: 'center',
     marginRight: 15,
-  },
-  addStoryCircle: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    backgroundColor: '#39FF14',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 2,
-    borderColor: '#39FF14',
   },
   storyName: {
     color: 'white',
@@ -156,8 +150,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     color: '#666',
     fontSize: 14,
-    fontWeight: 'bold',
-    fontFamily: 'GeistPixelSquare',
+    fontFamily: 'Doto_700Bold',
     letterSpacing: 1,
   },
   listContainer: {

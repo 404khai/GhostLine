@@ -66,17 +66,17 @@ const styles = StyleSheet.create({
   name: {
     color: 'white',
     fontSize: 16,
-    fontWeight: 'bold',
     fontFamily: 'Tektur_700Bold',
   },
   time: {
     color: '#666',
     fontSize: 12,
-    fontFamily: 'monospace',
+    fontFamily: 'PixelifySans_700Bold',
   },
   message: {
     color: '#aaa',
     fontSize: 14,
+    fontFamily: 'GeistPixelSquare',
   },
   badge: {
     backgroundColor: '#39FF14',

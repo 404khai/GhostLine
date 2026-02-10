@@ -17,7 +17,7 @@ export default function Index() {
 
   useEffect(() => {
     if (isReady) {
-      router.replace('/(tabs)/chats');
+      router.replace('/(tabs)/links');
     }
   }, [isReady]);
 

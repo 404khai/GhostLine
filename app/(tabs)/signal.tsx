@@ -1,21 +1,21 @@
-import React from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { CyberpunkButton } from '@/components/cyberpunk/CyberpunkButton';
 import { Ionicons } from '@expo/vector-icons';
+import React from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function SignalScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>SIGNAL</Text>
-        <Ionicons name="radio-outline" size={24} color="#00f0ff" />
+        <Ionicons name="radio-outline" size={24} color="#39FF14" />
       </View>
 
       <ScrollView contentContainerStyle={styles.content}>
         
         <View style={styles.alertBanner}>
-            <Ionicons name="warning-outline" size={24} color="#00f0ff" />
+            <Ionicons name="warning-outline" size={24} color="#39FF14" />
             <Text style={styles.alertText}>INCOMING TRANSMISSION DETECTED</Text>
         </View>
 
@@ -30,7 +30,7 @@ export default function SignalScreen() {
                 <Text style={styles.requestMeta}>Signal Strength: -42dBm</Text>
                 <View style={styles.requestActions}>
                     <CyberpunkButton label="ACCEPT" onPress={() => {}} style={{ flex: 1, marginRight: 5 }} />
-                    <CyberpunkButton label="DENY" onPress={() => {}} variant="secondary" style={{ flex: 1, marginLeft: 5 }} />
+                    <CyberpunkButton label="DENY" onPress={() => {}} variant="default" style={{ flex: 1, marginLeft: 5 }} />
                 </View>
             </View>
         </View>
@@ -38,13 +38,13 @@ export default function SignalScreen() {
         <View style={styles.section}>
             <Text style={styles.sectionTitle}>SYSTEM ALERTS</Text>
             <View style={styles.logItem}>
-                <Text style={styles.logText}>> Network mesh sync completed</Text>
+                <Text style={styles.logText}> Network mesh sync completed</Text>
             </View>
             <View style={styles.logItem}>
-                <Text style={styles.logText}>> Trust handshake initiated by Peer-9</Text>
+                <Text style={styles.logText}> Trust handshake initiated by Peer-9</Text>
             </View>
             <View style={styles.logItem}>
-                <Text style={styles.logText}>> Encryption keys rotated</Text>
+                <Text style={styles.logText}> Encryption keys rotated</Text>
             </View>
         </View>
 
@@ -67,9 +67,9 @@ const styles = StyleSheet.create({
     borderBottomColor: '#333',
   },
   headerTitle: {
-    fontFamily: 'GeistPixelSquare',
+    fontFamily: 'Doto_700Bold',
     fontSize: 24,
-    color: '#00f0ff',
+    color: '#39FF14',
   },
   content: {
     padding: 20,
@@ -79,13 +79,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(0, 240, 255, 0.1)',
     borderWidth: 1,
-    borderColor: '#00f0ff',
+    borderColor: '#39FF14',
     padding: 15,
     marginBottom: 30,
   },
   alertText: {
     fontFamily: 'Tektur_700Bold',
-    color: '#00f0ff',
+    color: '#39FF14',
     marginLeft: 10,
   },
   section: {

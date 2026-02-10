@@ -3,17 +3,22 @@ import { ImageSourcePropType, StyleSheet, View } from 'react-native';
 import Svg, { ClipPath, Defs, Path, Rect, Image as SvgImage } from 'react-native-svg';
 
 interface CyberpunkAvatarProps {
-  source: ImageSourcePropType | string; // Supports require() or URI string
+  source?: ImageSourcePropType | string; // Optional now
   size?: number;
   online?: boolean;
+  children?: React.ReactNode;
+  backgroundColor?: string;
 }
 
-export const CyberpunkAvatar: React.FC<CyberpunkAvatarProps> = ({ source, size = 60, online = false }) => {
+export const CyberpunkAvatar: React.FC<CyberpunkAvatarProps> = ({ source, size = 60, online = false, children, backgroundColor = 'transparent' }) => {
   // Convert uri string to object if needed for SvgImage?
   // SvgImage href accepts string (uri) or number (require) directly in newer versions, 
   // or {uri: string} object.
-  // We'll normalize it.
-  const imageSource = typeof source === 'string' ? { uri: source } : source;
+  // We'll normalize it if it exists.
+  const imageSource = source ? (typeof source === 'string' ? { uri: source } : source) : null;
+  
+  // Unique ID for clip path to avoid conflicts
+  const clipId = `clip-${Math.random().toString(36).substr(2, 9)}`;
 
   // Design Constants
   // The frame is roughly rectangular with cut corners.
@@ -28,7 +33,7 @@ export const CyberpunkAvatar: React.FC<CyberpunkAvatarProps> = ({ source, size =
 
   const cut = size * 0.15; // 15% corner cut
   const strokeWidth = 2;
-  const color = "#00f0ff"; // Cyan/Blue from the image
+  const color = "#39FF14"; // Cyan/Blue from the image
 
   // Shape Logic
   // Main octagon-like shape (chamfered box)
@@ -57,23 +62,28 @@ export const CyberpunkAvatar: React.FC<CyberpunkAvatarProps> = ({ source, size =
 
   return (
     <View style={{ width: size, height: size, justifyContent: 'center', alignItems: 'center' }}>
-      <Svg width={size} height={size}>
+      <Svg width={size} height={size} style={StyleSheet.absoluteFill}>
         <Defs>
-          <ClipPath id="clip">
+          <ClipPath id={clipId}>
             <Path d={mainPath} />
           </ClipPath>
         </Defs>
 
+        {/* Background Fill (if no source or if background color needed behind) */}
+        <Path d={mainPath} fill={backgroundColor} />
+
         {/* The Image masked by the shape */}
-        <SvgImage
-          x="0"
-          y="0"
-          width={size}
-          height={size}
-          preserveAspectRatio="xMidYMid slice"
-          href={imageSource}
-          clipPath="url(#clip)"
-        />
+        {imageSource && (
+          <SvgImage
+            x="0"
+            y="0"
+            width={size}
+            height={size}
+            preserveAspectRatio="xMidYMid slice"
+            href={imageSource}
+            clipPath={`url(#${clipId})`}
+          />
+        )}
 
         {/* Inner Border (Thin) */}
         <Path
@@ -91,6 +101,13 @@ export const CyberpunkAvatar: React.FC<CyberpunkAvatarProps> = ({ source, size =
         <Path d={blBracket} stroke={color} strokeWidth={2} fill="none" />
 
       </Svg>
+
+      {/* Children (Icon, etc.) */}
+      {children && (
+        <View style={{ position: 'absolute', justifyContent: 'center', alignItems: 'center' }}>
+            {children}
+        </View>
+      )}
 
       {/* Online Indicator - Updated to be a small diamond or rect to match theme */}
       {online && (

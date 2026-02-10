@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 import React from 'react';
 
-import { HapticTab } from '@/components/haptic-tab';
+import { CyberpunkTabBar } from '@/components/cyberpunk/CyberpunkTabBar';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
 export default function TabLayout() {
@@ -10,35 +10,12 @@ export default function TabLayout() {
 
   return (
     <Tabs
+      tabBar={props => <CyberpunkTabBar {...props} />}
       screenOptions={{
-        tabBarActiveTintColor: '#00f0ff',
-        tabBarInactiveTintColor: '#444',
         headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarStyle: {
-            position: 'absolute',
-            bottom: 25,
-            left: 20,
-            right: 20,
-            elevation: 0,
-            backgroundColor: 'rgba(10, 10, 15, 0.95)',
-            borderRadius: 15,
-            height: 70,
-            borderWidth: 1,
-            borderColor: '#00f0ff',
-            paddingBottom: 10,
-            paddingTop: 10,
-            // Shadow for glow effect
-            shadowColor: '#00f0ff',
-            shadowOffset: { width: 0, height: 0 },
-            shadowOpacity: 0.3,
-            shadowRadius: 10,
-        },
-        tabBarLabelStyle: {
-            fontFamily: 'GeistPixelSquare',
-            fontSize: 10,
-            marginTop: 5,
-        }
+        // We can keep these for reference, but CustomTabBar uses its own logic
+        tabBarActiveTintColor: '#39FF14',
+        tabBarInactiveTintColor: '#444',
       }}>
       
       {/* Index - Redirect/Hidden */}

@@ -1,16 +1,16 @@
-import React from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { CyberpunkButton } from '@/components/cyberpunk/CyberpunkButton';
 import { CyberpunkScanCard } from '@/components/cyberpunk/CyberpunkScanCard';
 import { Ionicons } from '@expo/vector-icons';
+import React from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function GridScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>GRID</Text>
-        <Ionicons name="grid-outline" size={24} color="#00f0ff" />
+        <Ionicons name="grid-outline" size={24} color="#39FF14" />
       </View>
 
       <ScrollView contentContainerStyle={styles.content}>
@@ -18,25 +18,25 @@ export default function GridScreen() {
         <View style={styles.actionsGrid}>
             <View style={styles.actionItem}>
                 <View style={styles.iconCircle}>
-                    <Ionicons name="qr-code-outline" size={28} color="#00f0ff" />
+                    <Ionicons name="qr-code-outline" size={28} color="#39FF14" />
                 </View>
                 <Text style={styles.actionLabel}>SCAN IDENTITY</Text>
             </View>
             <View style={styles.actionItem}>
                 <View style={styles.iconCircle}>
-                    <Ionicons name="people-outline" size={28} color="#00f0ff" />
+                    <Ionicons name="people-outline" size={28} color="#39FF14" />
                 </View>
                 <Text style={styles.actionLabel}>NEARBY USERS</Text>
             </View>
             <View style={styles.actionItem}>
                 <View style={styles.iconCircle}>
-                    <Ionicons name="wifi-outline" size={28} color="#00f0ff" />
+                    <Ionicons name="wifi-outline" size={28} color="#39FF14" />
                 </View>
                 <Text style={styles.actionLabel}>PUBLIC FREQ</Text>
             </View>
             <View style={styles.actionItem}>
                 <View style={styles.iconCircle}>
-                    <Ionicons name="globe-outline" size={28} color="#00f0ff" />
+                    <Ionicons name="globe-outline" size={28} color="#39FF14" />
                 </View>
                 <Text style={styles.actionLabel}>RELAY CHANNELS</Text>
             </View>
@@ -58,7 +58,7 @@ export default function GridScreen() {
             <View style={styles.roomCard}>
                 <Text style={styles.roomName}>#Tech_Bazaar_Open</Text>
                 <Text style={styles.roomMeta}>112 Users • Public</Text>
-                <CyberpunkButton label="JOIN" onPress={() => {}} variant="secondary" style={{ marginTop: 10 }} />
+                <CyberpunkButton label="JOIN" onPress={() => {}} variant="default" style={{ marginTop: 10 }} />
             </View>
         </View>
 
@@ -81,9 +81,9 @@ const styles = StyleSheet.create({
     borderBottomColor: '#333',
   },
   headerTitle: {
-    fontFamily: 'GeistPixelSquare',
+    fontFamily: 'Doto_700Bold',
     fontSize: 24,
-    color: '#00f0ff',
+    color: '#39FF14',
   },
   content: {
     padding: 20,
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 10,
     borderWidth: 1,
-    borderColor: '#00f0ff',
+    borderColor: '#39FF14',
   },
   actionLabel: {
     fontFamily: 'Tektur_700Bold',
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   },
   roomName: {
     fontFamily: 'Tektur_700Bold',
-    color: '#00f0ff',
+    color: '#39FF14',
     fontSize: 16,
     marginBottom: 5,
   },

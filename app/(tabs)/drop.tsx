@@ -1,16 +1,16 @@
-import React from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { CyberpunkButton } from '@/components/cyberpunk/CyberpunkButton';
 import { CyberpunkDangerBox } from '@/components/cyberpunk/CyberpunkDangerBox';
 import { Ionicons } from '@expo/vector-icons';
+import React from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function DropScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>DROP</Text>
-        <Ionicons name="cube-outline" size={24} color="#00f0ff" />
+        <Ionicons name="cube-outline" size={24} color="#39FF14" />
       </View>
 
       <ScrollView contentContainerStyle={styles.content}>
@@ -23,8 +23,7 @@ export default function DropScreen() {
 
         <CyberpunkDangerBox 
             title="DEAD DROP #921"
-            message="Encrypted payload available for 10:00 mins."
-            alertLevel="CRITICAL"
+            content="Encrypted payload available for 10:00 mins."
         />
 
         <View style={styles.actions}>
@@ -58,9 +57,9 @@ const styles = StyleSheet.create({
     borderBottomColor: '#333',
   },
   headerTitle: {
-    fontFamily: 'GeistPixelSquare',
+    fontFamily: 'Doto_700Bold',
     fontSize: 24,
-    color: '#00f0ff',
+    color: '#39FF14',
   },
   content: {
     padding: 20,
@@ -86,7 +85,7 @@ const styles = StyleSheet.create({
   },
   logTitle: {
     fontFamily: 'GeistPixelSquare',
-    color: '#00f0ff',
+    color: '#39FF14',
     marginBottom: 10,
     fontSize: 16,
   },
