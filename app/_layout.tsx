@@ -1,11 +1,11 @@
+import { PixelifySans_400Regular, PixelifySans_700Bold, useFonts } from '@expo-google-fonts/pixelify-sans';
+import { Tektur_400Regular, Tektur_700Bold } from '@expo-google-fonts/tektur';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
-import { useFonts, PixelifySans_400Regular, PixelifySans_700Bold } from '@expo-google-fonts/pixelify-sans';
-import { Tektur_400Regular, Tektur_700Bold } from '@expo-google-fonts/tektur';
 import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
+import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
@@ -24,6 +24,7 @@ export default function RootLayout() {
     PixelifySans_700Bold,
     Tektur_400Regular,
     Tektur_700Bold,
+    'GeistPixelSquare': require('../assets/fonts/GeistPixel-Square.ttf'),
   });
 
   useEffect(() => {
