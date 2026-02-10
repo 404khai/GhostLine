@@ -7,21 +7,24 @@ import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 // Mock Data
+const user1 = require('@/assets/images/user1.jpeg');
+const user2 = require('@/assets/images/user2.jpeg');
+
 const STORIES = [
   { id: '1', name: 'Add Story', isAdd: true },
-  { id: '2', name: 'Terry', uri: 'https://i.pravatar.cc/150?u=a042581f4e29026024d' },
-  { id: '3', name: 'Craig', uri: 'https://i.pravatar.cc/150?u=a042581f4e29026704d' },
-  { id: '4', name: 'Roger', uri: 'https://i.pravatar.cc/150?u=a04258114e29026302d' },
-  { id: '5', name: 'Nolan', uri: 'https://i.pravatar.cc/150?u=a04258114e29026708c' },
+  { id: '2', name: 'Terry', source: user1 },
+  { id: '3', name: 'Craig', source: user2 },
+  { id: '4', name: 'Roger', source: 'https://i.pravatar.cc/150?u=a04258114e29026302d' },
+  { id: '5', name: 'Nolan', source: 'https://i.pravatar.cc/150?u=a04258114e29026708c' },
 ];
 
 const CHATS = [
-  { id: '1', name: 'Angel Curtis', message: 'Please help me find a good monitor for t...', time: '02:11', unread: 2, uri: 'https://i.pravatar.cc/150?u=a042581f4e29026024d' },
-  { id: '2', name: 'Zaire Dorwart', message: 'Gacor pisan kang', time: '02:11', unread: 0, uri: 'https://i.pravatar.cc/150?u=a042581f4e29026704d' },
-  { id: '3', name: 'Kelas Malam', message: 'Bima : No one can come today?', time: '02:11', unread: 2, uri: 'https://i.pravatar.cc/150?u=a04258114e29026302d' },
-  { id: '4', name: 'Jocelyn Gouse', message: 'You\'re now an admin', time: '02:11', unread: 0, uri: 'https://i.pravatar.cc/150?u=a04258114e29026708c' },
-  { id: '5', name: 'Jaylon Dias', message: 'Buy back 10k gallons, top up credit, b...', time: '02:11', unread: 0, uri: 'https://i.pravatar.cc/150?u=a048581f4e29026701d' },
-  { id: '6', name: 'Chance Rhiel Madsen', message: 'Thank you mate!', time: '02:11', unread: 2, uri: 'https://i.pravatar.cc/150?u=a042581f4e29026024d' },
+  { id: '1', name: 'Angel Curtis', message: 'Please help me find a good monitor for t...', time: '02:11', unread: 2, source: user1 },
+  { id: '2', name: 'Zaire Dorwart', message: 'Gacor pisan kang', time: '02:11', unread: 0, source: user2 },
+  { id: '3', name: 'Kelas Malam', message: 'Bima : No one can come today?', time: '02:11', unread: 2, source: 'https://i.pravatar.cc/150?u=a04258114e29026302d' },
+  { id: '4', name: 'Jocelyn Gouse', message: 'You\'re now an admin', time: '02:11', unread: 0, source: 'https://i.pravatar.cc/150?u=a04258114e29026708c' },
+  { id: '5', name: 'Jaylon Dias', message: 'Buy back 10k gallons, top up credit, b...', time: '02:11', unread: 0, source: 'https://i.pravatar.cc/150?u=a048581f4e29026701d' },
+  { id: '6', name: 'Chance Rhiel Madsen', message: 'Thank you mate!', time: '02:11', unread: 2, source: 'https://i.pravatar.cc/150?u=a042581f4e29026024d' },
 ];
 
 export default function ChatsScreen() {
@@ -33,14 +36,14 @@ export default function ChatsScreen() {
       
       {/* Header */}
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>GHOSTLINE</Text>
+        <Text style={styles.headerTitle}>LINKS</Text>
         <TouchableOpacity style={styles.searchButton}>
-          <Ionicons name="search" size={24} color="white" />
+          <Ionicons name="search" size={24} color="#00f0ff" />
         </TouchableOpacity>
       </View>
 
       <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
-        {/* Stories Section */}
+        {/* Stories Section (Now Proximity/Active) */}
         <View style={styles.storiesContainer}>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 20 }}>
             {STORIES.map((story, index) => (
@@ -50,9 +53,11 @@ export default function ChatsScreen() {
                     <Ionicons name="add" size={30} color="black" />
                   </View>
                 ) : (
-                  <CyberpunkAvatar uri={story.uri!} size={60} online={true} />
+                  <CyberpunkAvatar source={story.source!} size={60} online={true} />
                 )}
                 <Text style={styles.storyName}>{story.name}</Text>
+                {/* Latency indicator */}
+                {!story.isAdd && <Text style={{ fontSize: 10, color: '#00f0ff', fontFamily: 'monospace' }}>12ms</Text>}
               </View>
             ))}
           </ScrollView>
@@ -60,7 +65,7 @@ export default function ChatsScreen() {
 
         {/* Chats Section Header */}
         <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>CHATS</Text>
+          <Text style={styles.sectionTitle}>ACTIVE FEEDS</Text>
           <Ionicons name="ellipsis-horizontal" size={20} color="#666" />
         </View>
 
@@ -73,7 +78,7 @@ export default function ChatsScreen() {
               message={chat.message}
               time={chat.time}
               unreadCount={chat.unread}
-              avatarUri={chat.uri}
+              avatarSource={chat.source}
               onPress={() => router.push({ pathname: '/chat/[id]', params: { id: chat.id } })}
             />
           ))}
@@ -107,20 +112,22 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   headerTitle: {
-    color: '#39FF14',
-    fontSize: 28,
-    fontFamily: 'PixelifySans_700Bold',
-    letterSpacing: 2,
+    color: '#00f0ff',
+    fontSize: 24,
+    fontWeight: 'bold',
+    fontFamily: 'GeistPixelSquare',
   },
   searchButton: {
     padding: 5,
   },
   storiesContainer: {
-    marginBottom: 20,
+    paddingVertical: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#333',
   },
   storyItem: {
     alignItems: 'center',
-    marginRight: 20,
+    marginRight: 15,
   },
   addStoryCircle: {
     width: 60,
@@ -131,24 +138,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 2,
     borderColor: '#39FF14',
-    marginBottom: 5,
   },
   storyName: {
     color: 'white',
-    marginTop: 5,
     fontSize: 12,
+    marginTop: 5,
+    fontFamily: 'Tektur_400Regular',
   },
   sectionHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 20,
+    marginTop: 20,
     marginBottom: 10,
   },
   sectionTitle: {
     color: '#666',
     fontSize: 14,
     fontWeight: 'bold',
+    fontFamily: 'GeistPixelSquare',
     letterSpacing: 1,
   },
   listContainer: {

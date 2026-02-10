@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { CyberpunkAvatar } from './CyberpunkAvatar';
 
 interface CyberpunkChatRowProps {
   name: string;
   message: string;
   time: string;
-  avatarUri: string;
+  avatarSource: any; // Changed from avatarUri to allow local requires
   unreadCount?: number;
   onPress: () => void;
 }
@@ -15,14 +15,14 @@ export const CyberpunkChatRow: React.FC<CyberpunkChatRowProps> = ({
   name,
   message,
   time,
-  avatarUri,
+  avatarSource,
   unreadCount = 0,
   onPress
 }) => {
   return (
     <TouchableOpacity onPress={onPress} activeOpacity={0.7} style={styles.container}>
       {/* Avatar */}
-      <CyberpunkAvatar uri={avatarUri} size={50} online={true} />
+      <CyberpunkAvatar source={avatarSource} size={50} online={true} />
 
       {/* Content */}
       <View style={styles.content}>
