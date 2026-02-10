@@ -1,5 +1,6 @@
 import { PixelifySans_400Regular, PixelifySans_700Bold, useFonts } from '@expo-google-fonts/pixelify-sans';
 import { Tektur_400Regular, Tektur_700Bold } from '@expo-google-fonts/tektur';
+import { Doto_400Regular, Doto_700Bold, Doto_900Black } from '@expo-google-fonts/doto';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -24,6 +25,9 @@ export default function RootLayout() {
     PixelifySans_700Bold,
     Tektur_400Regular,
     Tektur_700Bold,
+    Doto_400Regular,
+    Doto_700Bold,
+    Doto_900Black,
     'GeistPixelSquare': require('../assets/fonts/GeistPixel-Square.ttf'),
   });
 

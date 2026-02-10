@@ -81,8 +81,8 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end', // Align to right usually for this shape
   },
   barContainer: {
-    height: 40,
-    width: 200,
+    height: 60,
+    width: 160,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
