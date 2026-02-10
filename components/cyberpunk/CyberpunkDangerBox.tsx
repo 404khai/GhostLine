@@ -19,40 +19,8 @@ export const CyberpunkDangerBox: React.FC<CyberpunkDangerBoxProps> = ({
 
   return (
     <View style={[styles.container, style]}>
-      {/* Background SVG Frame */}
-      <View style={StyleSheet.absoluteFill}>
-        <Svg height="100%" width="100%">
-          {/* Main Frame Path */}
-          {/* We use a path that cuts the top-left and bottom-right corners */}
-          {/* Since we don't know exact width/height in SVG without onLayout, 
-              we can use percentage or just use a View with borders for a simpler approach if the shape allows.
-              But for angled corners, SVG with percentage is tricky because 'L 100% 100%' works but 'L 100%-20' doesn't directly.
-              
-              However, we can use a View-based approach with rotation for the corners, OR
-              just draw a fixed size or responsive SVG if we measure layout.
-              
-              Let's try a responsive approach using View borders and some absolute positioned covers for the cuts.
-              ACTUALLY, for a high-fidelity cyberpunk look, SVG is best.
-              I will assume a fixed aspect ratio or measure it.
-              
-              Let's use a simple trick: 
-              A View with white border.
-              Two small black triangles (or background color) absolute positioned to hide the corners.
-              Then draw a white line to close the cut.
-           */}
-           
-           {/* Let's try the absolute SVG approach that renders lines based on 100% */}
-           <Path
-             d={`M ${cutSize} 2 L 98% 2 L 100% ${cutSize} L 100% 98% L 98% 100% L ${cutSize} 100% L 0 98% L 0 ${cutSize} Z`}
-             fill="none"
-             stroke="white"
-             strokeWidth={strokeWidth}
-             // Note: SVG paths with % are not standard in all RN versions, but react-native-svg supports some.
-             // If % fails, we'll fall back to measuring. 
-             // Let's use measuring wrapper.
-           />
-        </Svg>
-      </View>
+      {/* Background SVG Frame - Removed to avoid % path errors on native. 
+          We use the View-based borders + CornerCut below instead. */}
 
       {/* Content */}
       <View style={styles.contentContainer}>
