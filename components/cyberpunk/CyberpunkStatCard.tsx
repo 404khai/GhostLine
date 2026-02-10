@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, ViewStyle } from 'react-native';
-import Svg, { Path, Rect, Line, Polyline } from 'react-native-svg';
+import { StyleSheet, Text, View, ViewStyle } from 'react-native';
+import Svg, { Line, Path, Polyline, Rect } from 'react-native-svg';
 
 interface CyberpunkStatCardProps {
   style?: ViewStyle;
@@ -15,6 +15,15 @@ export const CyberpunkStatCard: React.FC<CyberpunkStatCardProps> = ({
   label = "2849-TTR-4HF-1945",
   content = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit."
 }) => {
+  const [layout, setLayout] = React.useState({ width: 0, height: 0 });
+
+  const onLayout = (event: import('react-native').LayoutChangeEvent) => {
+    const { width, height } = event.nativeEvent.layout;
+    setLayout({ width, height });
+  };
+
+  const { width, height } = layout;
+
   return (
     <View style={[styles.container, style]}>
       {/* Left Icon (Diamond) */}
@@ -36,7 +45,7 @@ export const CyberpunkStatCard: React.FC<CyberpunkStatCardProps> = ({
         </View>
 
         {/* The Card Itself */}
-        <View style={styles.cardContent}>
+        <View style={styles.cardContent} onLayout={onLayout}>
             {/* Top Label */}
             <Text style={styles.topLabel}>{label}</Text>
             
@@ -57,25 +66,27 @@ export const CyberpunkStatCard: React.FC<CyberpunkStatCardProps> = ({
 
             {/* Border with Cut Corner (Simulated with Svg absolute overlay) */}
             <View style={StyleSheet.absoluteFill} pointerEvents="none">
-                <Svg height="100%" width="100%">
-                    {/* Outline: 
-                        Start top-left (cut), go right, down, left, up (cut)
-                        We'll just draw a border with a cut at Top-Left
-                    */}
-                    <Path 
-                        d="M 20 0 L 100% 0 L 100% 100% L 0 100% L 0 20 L 20 0 Z" 
-                        fill="none" 
-                        stroke="white" 
-                        strokeWidth={1} 
-                    />
-                    {/* Inner detail line */}
-                    <Path 
-                        d="M 22 4 L 98% 4" 
-                        fill="none" 
-                        stroke="white" 
-                        strokeWidth={0.5} 
-                    />
-                </Svg>
+                {width > 0 && height > 0 && (
+                  <Svg height={height} width={width}>
+                      {/* Outline: 
+                          Start top-left (cut), go right, down, left, up (cut)
+                          We'll just draw a border with a cut at Top-Left
+                      */}
+                      <Path 
+                          d={`M 20 0 L ${width} 0 L ${width} ${height} L 0 ${height} L 0 20 L 20 0 Z`} 
+                          fill="none" 
+                          stroke="white" 
+                          strokeWidth={1} 
+                      />
+                      {/* Inner detail line */}
+                      <Path 
+                          d={`M 22 4 L ${width - 5} 4`} 
+                          fill="none" 
+                          stroke="white" 
+                          strokeWidth={0.5} 
+                      />
+                  </Svg>
+                )}
             </View>
         </View>
       </View>

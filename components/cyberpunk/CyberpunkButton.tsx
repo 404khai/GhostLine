@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ViewStyle } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, ViewStyle } from 'react-native';
 import Svg, { Path, Rect } from 'react-native-svg';
 
 interface CyberpunkButtonProps {
@@ -7,13 +7,17 @@ interface CyberpunkButtonProps {
   label?: string;
   value?: string;
   onPress?: () => void;
+  variant?: 'default' | 'simple'; // Simple variant hides loader/connection line
+  icon?: React.ReactNode;
 }
 
 export const CyberpunkButton: React.FC<CyberpunkButtonProps> = ({
   style,
   label = "DATA SCAN",
-  value = "17%",
-  onPress
+  value,
+  onPress,
+  variant = 'default',
+  icon
 }) => {
   return (
     <TouchableOpacity onPress={onPress} activeOpacity={0.8} style={[styles.container, style]}>
@@ -21,42 +25,51 @@ export const CyberpunkButton: React.FC<CyberpunkButtonProps> = ({
         <View style={styles.barContainer}>
             {/* Background Shape */}
             <View style={StyleSheet.absoluteFill}>
-                 <Svg height="100%" width="100%">
+                 <Svg height="100%" width="100%" viewBox="0 0 200 40">
                     <Path 
-                        d="M 10 0 L 100% 0 L 100% 100% L 20 100% L 0 70% L 0 10 Z" 
-                        fill="#333" 
-                        stroke="white" 
+                        d="M 10 0 L 200 0 L 200 40 L 20 40 L 0 28 L 0 10 Z" 
+                        fill="#1a1a1a" 
+                        stroke="#39FF14" 
                         strokeWidth={1} 
                     />
                  </Svg>
             </View>
             
             <View style={styles.content}>
-                <Text style={styles.label}>{label}</Text>
-                <View style={styles.valueBox}>
-                    <Text style={styles.valueText}>{value}</Text>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  {icon && <View style={{marginRight: 10}}>{icon}</View>}
+                  <Text style={styles.label}>{label}</Text>
                 </View>
+                {value && (
+                  <View style={styles.valueBox}>
+                      <Text style={styles.valueText}>{value}</Text>
+                  </View>
+                )}
             </View>
         </View>
         
-        {/* Loading Bar underneath */}
-        <View style={styles.loaderContainer}>
-             <View style={styles.loaderBar} />
-             {/* Dashed part */}
-             <View style={styles.dashedPart}>
-                 {[...Array(8)].map((_, i) => (
-                     <View key={i} style={styles.dash} />
-                 ))}
-             </View>
-        </View>
+        {/* Loading Bar underneath - Only for default variant */}
+        {variant === 'default' && (
+          <>
+            <View style={styles.loaderContainer}>
+                 <View style={styles.loaderBar} />
+                 {/* Dashed part */}
+                 <View style={styles.dashedPart}>
+                     {[...Array(8)].map((_, i) => (
+                         <View key={i} style={styles.dash} />
+                     ))}
+                 </View>
+            </View>
 
-        {/* Connection Line */}
-        <View style={styles.connectionLine}>
-             <Svg height={20} width={100}>
-                 <Path d="M 100 0 L 80 15 L 0 15" stroke="white" strokeWidth={1} fill="none" />
-                 <Rect x={-2} y={13} width={4} height={4} fill="white" />
-             </Svg>
-        </View>
+            {/* Connection Line */}
+            <View style={styles.connectionLine}>
+                 <Svg height={20} width={100}>
+                     <Path d="M 100 0 L 80 15 L 0 15" stroke="#39FF14" strokeWidth={1} fill="none" />
+                     <Rect x={-2} y={13} width={4} height={4} fill="#39FF14" />
+                 </Svg>
+            </View>
+          </>
+        )}
     </TouchableOpacity>
   );
 };
