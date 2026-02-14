@@ -6,7 +6,7 @@
 import { Platform } from 'react-native';
 
 const tintColorLight = '#0a7ea4';
-const tintColorDark = '#fff';
+const tintColorDark = '#00E5FF';
 
 export const Colors = {
   light: {
@@ -18,13 +18,20 @@ export const Colors = {
     tabIconSelected: tintColorLight,
   },
   dark: {
-    text: '#ECEDEE',
-    background: '#151718',
+    text: '#00E5FF',
+    background: '#0A0B10',
     tint: tintColorDark,
-    icon: '#9BA1A6',
+    icon: '#00E5FF',
     tabIconDefault: '#9BA1A6',
     tabIconSelected: tintColorDark,
   },
+  cyberpunk: {
+    primary: '#00E5FF',
+    warning: '#FFD400',
+    background: '#0A0B10',
+    text: '#00E5FF',
+    card: '#0A0B10', // or slightly lighter
+  }
 };
 
 export const Fonts = Platform.select({

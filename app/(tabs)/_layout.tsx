@@ -14,7 +14,7 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
         // We can keep these for reference, but CustomTabBar uses its own logic
-        tabBarActiveTintColor: '#39FF14',
+        tabBarActiveTintColor: '#00E5FF',
         tabBarInactiveTintColor: '#444',
       }}>
       

@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { StyleSheet, Text, View, ViewStyle } from 'react-native';
-import Svg, { Line, Path } from 'react-native-svg';
+import Svg, { Line } from 'react-native-svg';
 
 interface CyberpunkDangerBoxProps {
   style?: ViewStyle;
@@ -110,26 +110,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 10,
     borderBottomWidth: 1,
-    borderBottomColor: '#333',
+    borderBottomColor: Colors.cyberpunk.warning,
     paddingBottom: 5,
     alignSelf: 'flex-start',
   },
   headerText: {
-    color: 'white',
+    color: Colors.cyberpunk.warning,
     fontSize: 24,
     fontWeight: 'bold',
     letterSpacing: 2,
     marginRight: 10,
   },
   iconContainer: {
-    backgroundColor: 'white',
+    backgroundColor: Colors.cyberpunk.warning,
     padding: 2,
     borderRadius: 2, // Slightly rounded or sharp
     justifyContent: 'center',
     alignItems: 'center',
   },
   bodyText: {
-    color: '#ccc',
+    color: Colors.cyberpunk.text,
     fontSize: 10,
     lineHeight: 14,
     fontFamily: 'monospace', // Or a system font
@@ -146,12 +146,12 @@ const styles = StyleSheet.create({
   stripe: {
     width: 6,
     height: 15,
-    backgroundColor: 'white',
+    backgroundColor: Colors.cyberpunk.warning,
     transform: [{ skewY: '-20deg' }], // Slight angle
     marginVertical: 2,
   },
   border: {
     position: 'absolute',
-    backgroundColor: 'white',
+    backgroundColor: Colors.cyberpunk.warning,
   }
 });

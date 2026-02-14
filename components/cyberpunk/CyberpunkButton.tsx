@@ -1,7 +1,7 @@
+import { Colors } from '@/constants/theme';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, ViewStyle } from 'react-native';
 import Svg, { Path, Rect } from 'react-native-svg';
-
 interface CyberpunkButtonProps {
   style?: ViewStyle;
   label?: string;
@@ -28,8 +28,8 @@ export const CyberpunkButton: React.FC<CyberpunkButtonProps> = ({
                  <Svg height="100%" width="100%" viewBox="0 0 200 40">
                     <Path 
                         d="M 10 0 L 200 0 L 200 40 L 20 40 L 0 28 L 0 10 Z" 
-                        fill="#1a1a1a" 
-                        stroke="#39FF14" 
+                        fill={Colors.cyberpunk.card} 
+                        stroke={Colors.cyberpunk.primary} 
                         strokeWidth={1} 
                     />
                  </Svg>
@@ -64,8 +64,8 @@ export const CyberpunkButton: React.FC<CyberpunkButtonProps> = ({
             {/* Connection Line */}
             <View style={styles.connectionLine}>
                  <Svg height={20} width={100}>
-                     <Path d="M 100 0 L 80 15 L 0 15" stroke="#39FF14" strokeWidth={1} fill="none" />
-                     <Rect x={-2} y={13} width={4} height={4} fill="#39FF14" />
+                     <Path d="M 100 0 L 80 15 L 0 15" stroke="#00E5FF" strokeWidth={1} fill="none" />
+                     <Rect x={-2} y={13} width={4} height={4} fill="#00E5FF" />
                  </Svg>
             </View>
           </>

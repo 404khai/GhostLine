@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontFamily: 'Doto_700Bold',
     fontSize: 24,
-    color: '#39FF14',
+    color: Colors.cyberpunk.primary,
   },
   content: {
     padding: 20,

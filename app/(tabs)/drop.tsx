@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   },
   logTitle: {
     fontFamily: 'GeistPixelSquare',
-    color: '#39FF14',
+    color: Colors.cyberpunk.primary,
     marginBottom: 10,
     fontSize: 16,
   },

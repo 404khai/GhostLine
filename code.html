@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Peers Connection Terminal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0019ff",
+                        "neon-cyan": "#00E5FF",
+                        "neon-yellow": "#FFD400",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#0A0B10",
+                        "terminal-gray": "#1a1c2e",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "monospace"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: 0.05em;
+        }
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: rgba(0, 229, 255, 0.1);
+            position: absolute;
+            z-index: 50;
+            pointer-events: none;
+        }
+        .crt-overlay {
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+        }
+        .clipped-corner {
+            clip-path: polygon(0 0, 92% 0, 100% 25%, 100% 100%, 8% 100%, 0 75%);
+        }
+        .clipped-corner-sm {
+            clip-path: polygon(0 0, 95% 0, 100% 20%, 100% 100%, 5% 100%, 0 80%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-white overflow-hidden selection:bg-neon-cyan selection:text-black">
+<!-- Terminal Overlay Effects -->
+<div class="fixed inset-0 crt-overlay z-50 pointer-events-none opacity-40"></div>
+<div class="fixed inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_rgba(0,0,0,0.4)_100%)] pointer-events-none"></div>
+<!-- Main App Container (Mobile Form Factor) -->
+<div class="flex flex-col h-screen max-w-md mx-auto relative border-x border-primary/20 bg-background-dark shadow-[0_0_50px_rgba(0,25,255,0.1)]">
+<!-- Header Section -->
+<header class="p-6 pt-10 border-b border-primary/30 relative">
+<div class="flex justify-between items-end mb-2">
+<div>
+<span class="text-[10px] text-neon-cyan/60 uppercase tracking-[0.3em] font-bold">Protocol: GhostLine v.4.0.2</span>
+<h1 class="text-3xl font-bold tracking-tighter text-white uppercase italic">PEERS <span class="text-neon-cyan">ONLINE</span></h1>
+</div>
+<div class="text-right">
+<div class="text-xs font-mono text-neon-yellow">SYS_READY</div>
+<div class="text-[10px] font-mono text-white/40">192.168.0.254</div>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-4">
+<div class="h-[2px] flex-1 bg-primary/40"></div>
+<div class="w-2 h-2 bg-neon-cyan animate-pulse"></div>
+<div class="h-[2px] w-12 bg-primary/40"></div>
+</div>
+</header>
+<!-- Network Status Bar -->
+<div class="px-6 py-2 bg-primary/10 border-b border-primary/20 flex justify-between items-center text-[10px] uppercase font-bold text-neon-cyan/80">
+<span>Grid Status: Active</span>
+<span class="flex items-center gap-1"><span class="w-1 h-1 bg-neon-cyan rounded-full"></span> 10.4 kb/s</span>
+<span>Uptime: 04:12:44</span>
+</div>
+<!-- Peers List -->
+<main class="flex-1 overflow-y-auto scrollbar-hide custom-scrollbar">
+<!-- Peer Node 1 (Unread) -->
+<div class="relative group border-b border-primary/10 hover:bg-primary/5 transition-colors cursor-pointer">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-neon-yellow shadow-[0_0_8px_#FFD400]"></div>
+<div class="p-5 pl-6 flex items-start gap-4">
+<!-- Geometric Glyph -->
+<div class="w-12 h-12 flex items-center justify-center border border-neon-cyan/30 bg-background-dark relative">
+<div class="absolute inset-1 border border-neon-cyan/10"></div>
+<svg class="text-neon-cyan opacity-80" fill="none" height="24" viewbox="0 0 24 24" width="24">
+<rect class="fill-current" height="6" width="6" x="4" y="4"></rect>
+<rect height="6" stroke="currentColor" stroke-width="1" width="6" x="14" y="14"></rect>
+<circle cx="17" cy="7" r="3" stroke="currentColor" stroke-width="1"></circle>
+</svg>
+</div>
+<!-- Node Info -->
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-center mb-1">
+<span class="text-sm font-bold tracking-widest text-white uppercase">specter-47</span>
+<div class="flex items-end gap-[1px]">
+<div class="w-1 h-2 bg-neon-cyan"></div>
+<div class="w-1 h-3 bg-neon-cyan"></div>
+<div class="w-1 h-4 bg-neon-cyan"></div>
+<div class="w-1 h-2 bg-neon-cyan/20"></div>
+<div class="w-1 h-3 bg-neon-cyan/20 text-[10px] ml-1 font-mono text-neon-cyan">24ms</div>
+</div>
+</div>
+<div class="text-[11px] font-mono text-neon-yellow/90 truncate mb-1">
+                            [RECV] PACKET_ID:0x88FF - "Secure the perimeter at sector 7..."
+                        </div>
+<div class="flex gap-4 text-[9px] uppercase text-white/40 font-bold">
+<span>Hash: 8G92...X2</span>
+<span>Direct Link</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Peer Node 2 -->
+<div class="relative group border-b border-primary/10 hover:bg-primary/5 transition-colors cursor-pointer">
+<div class="p-5 pl-6 flex items-start gap-4">
+<!-- Geometric Glyph -->
+<div class="w-12 h-12 flex items-center justify-center border border-white/10 bg-background-dark relative">
+<div class="absolute inset-1 border border-white/5"></div>
+<svg class="text-white opacity-40" fill="none" height="24" viewbox="0 0 24 24" width="24">
+<path d="M12 4L4 20H20L12 4Z" stroke="currentColor" stroke-width="1"></path>
+<path d="M12 8L8 16H16L12 8Z" fill="currentColor"></path>
+</svg>
+</div>
+<!-- Node Info -->
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-center mb-1">
+<span class="text-sm font-bold tracking-widest text-white/60 uppercase">neon_wraith</span>
+<div class="flex items-end gap-[1px]">
+<div class="w-1 h-2 bg-white/40"></div>
+<div class="w-1 h-3 bg-white/40"></div>
+<div class="w-1 h-4 bg-white/20"></div>
+<div class="w-1 h-2 bg-white/20"></div>
+<div class="w-1 h-3 bg-white/10 text-[10px] ml-1 font-mono text-white/40">112ms</div>
+</div>
+</div>
+<div class="text-[11px] font-mono text-white/30 truncate mb-1">
+                            [STBY] NODE_IDLE - Waiting for handshake...
+                        </div>
+<div class="flex gap-4 text-[9px] uppercase text-white/40 font-bold">
+<span>Hash: 2A11...L0</span>
+<span>Relay: 12.0.4.1</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Peer Node 3 (Unread) -->
+<div class="relative group border-b border-primary/10 hover:bg-primary/5 transition-colors cursor-pointer">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-neon-yellow shadow-[0_0_8px_#FFD400]"></div>
+<div class="p-5 pl-6 flex items-start gap-4">
+<!-- Geometric Glyph -->
+<div class="w-12 h-12 flex items-center justify-center border border-neon-cyan/30 bg-background-dark relative">
+<div class="absolute inset-1 border border-neon-cyan/10"></div>
+<svg class="text-neon-cyan opacity-80" fill="none" height="24" viewbox="0 0 24 24" width="24">
+<rect fill="currentColor" height="2" width="20" x="2" y="11"></rect>
+<rect fill="currentColor" height="20" width="2" x="11" y="2"></rect>
+<rect height="10" stroke="currentColor" stroke-width="1" width="10" x="7" y="7"></rect>
+</svg>
+</div>
+<!-- Node Info -->
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-center mb-1">
+<span class="text-sm font-bold tracking-widest text-white uppercase">void-runner</span>
+<div class="flex items-end gap-[1px]">
+<div class="w-1 h-2 bg-neon-cyan"></div>
+<div class="w-1 h-3 bg-neon-cyan"></div>
+<div class="w-1 h-4 bg-neon-cyan"></div>
+<div class="w-1 h-2 bg-neon-cyan"></div>
+<div class="w-1 h-3 bg-neon-cyan text-[10px] ml-1 font-mono text-neon-cyan">12ms</div>
+</div>
+</div>
+<div class="text-[11px] font-mono text-neon-yellow/90 truncate mb-1">
+                            [RECV] PACKET_ID:0xCC42 - "Signal acquired. Requesting backu..."
+                        </div>
+<div class="flex gap-4 text-[9px] uppercase text-white/40 font-bold">
+<span>Hash: 9P44...M1</span>
+<span>Direct Link</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Peer Node 4 -->
+<div class="relative group border-b border-primary/10 hover:bg-primary/5 transition-colors cursor-pointer">
+<div class="p-5 pl-6 flex items-start gap-4">
+<!-- Geometric Glyph -->
+<div class="w-12 h-12 flex items-center justify-center border border-white/10 bg-background-dark relative">
+<div class="absolute inset-1 border border-white/5"></div>
+<svg class="text-white opacity-40" fill="none" height="24" viewbox="0 0 24 24" width="24">
+<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1"></circle>
+<rect fill="currentColor" height="6" width="6" x="9" y="9"></rect>
+</svg>
+</div>
+<!-- Node Info -->
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-center mb-1">
+<span class="text-sm font-bold tracking-widest text-white/60 uppercase">cipher.0x1</span>
+<div class="flex items-end gap-[1px]">
+<div class="w-1 h-2 bg-white/40"></div>
+<div class="w-1 h-3 bg-white/40"></div>
+<div class="w-1 h-4 bg-white/20"></div>
+<div class="w-1 h-2 bg-white/20"></div>
+<div class="w-1 h-3 bg-white/10 text-[10px] ml-1 font-mono text-white/40">48ms</div>
+</div>
+</div>
+<div class="text-[11px] font-mono text-white/30 truncate mb-1">
+                            [STBY] SYNC_COMPLETE - All data packets verified.
+                        </div>
+<div class="flex gap-4 text-[9px] uppercase text-white/40 font-bold">
+<span>Hash: 4H21...B7</span>
+<span>Relay: 10.0.0.1</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Background Decoration (Map) -->
+<div class="p-10 opacity-10 grayscale invert brightness-200">
+<div class="h-40 w-full border border-white/20 relative">
+<img class="w-full h-full object-cover mix-blend-screen opacity-50" data-alt="Monochrome digital topographical map showing connection points" data-location="Neo-Tokyo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3XZUJzGq7bed_KboDP4Xm6GVR8XNUJ8ng_rSX_9_ezsj8cW6XUB_FNGYonmFrek-6wI_n_qmIyITsFZdc2ZlYlc6AIJkA2aG5mFHWcsjIfMXNa2d_YuGZAf-zNTy0pMaCQEMsiZYEke02x_6018JAmew0mZSO0TSUmjouX5CkGFWhV-OBb6V4uOckZKUlduUgofcJr4y2KBKKSNkVLSmN3w7ILGr3aciQGh_90HZ7Z6HKFTRfB7qv_LIBwY0kcOQf7BnIsSzm9EIr"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-[10px] font-mono tracking-[0.5em] text-white">SCANNING_GEOLOCATION...</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer / FAB Section -->
+<footer class="p-6 pb-12 relative flex justify-center items-center">
+<div class="absolute inset-0 bg-background-dark/80 backdrop-blur-md border-t border-primary/20"></div>
+<button class="relative group flex items-center gap-3">
+<div class="absolute -inset-2 bg-primary/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<!-- Sharp FAB -->
+<div class="relative bg-primary px-8 py-3 clipped-corner border border-neon-cyan/50 flex items-center gap-3 active:scale-95 transition-transform">
+<span class="material-icons text-white text-sm">link</span>
+<span class="text-xs font-bold tracking-[0.2em] text-white uppercase">Initiate Link</span>
+</div>
+<!-- Decorative Elements -->
+<div class="h-[1px] w-8 bg-neon-cyan/50"></div>
+<div class="text-[8px] font-mono text-white/40 uppercase">
+                    Channel: Encrypted<br/>Mode: Stealth
+                </div>
+</button>
+</footer>
+<!-- Bottom Status Decor -->
+<div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
+</div>
+<!-- Small sidebar nav items for mobile form factor visual completeness -->
+<div class="fixed left-4 top-1/2 -translate-y-1/2 flex flex-col gap-6 text-white/20 hidden lg:flex">
+<span class="material-icons hover:text-neon-cyan cursor-pointer transition-colors">grid_view</span>
+<span class="material-icons text-neon-cyan cursor-pointer">sensors</span>
+<span class="material-icons hover:text-neon-cyan cursor-pointer transition-colors">terminal</span>
+<span class="material-icons hover:text-neon-cyan cursor-pointer transition-colors">settings_input_antenna</span>
+</div>
+</body></html>

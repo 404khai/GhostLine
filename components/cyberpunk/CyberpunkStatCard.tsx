@@ -29,9 +29,9 @@ export const CyberpunkStatCard: React.FC<CyberpunkStatCardProps> = ({
       {/* Left Icon (Diamond) */}
       <View style={styles.iconContainer}>
         <Svg width={40} height={40}>
-          <Rect x={10} y={10} width={20} height={20} stroke="white" strokeWidth={1} fill="none" transform="rotate(45, 20, 20)" />
-          <Rect x={15} y={15} width={10} height={10} fill="#666" transform="rotate(45, 20, 20)" />
-          <Line x1={35} y1={20} x2={40} y2={20} stroke="white" strokeWidth={1} />
+          <Rect x={10} y={10} width={20} height={20} stroke="#00E5FF" strokeWidth={1} fill="none" transform="rotate(45, 20, 20)" />
+          <Rect x={15} y={15} width={10} height={10} fill="#00E5FF" transform="rotate(45, 20, 20)" />
+          <Line x1={35} y1={20} x2={40} y2={20} stroke="#00E5FF" strokeWidth={1} />
         </Svg>
       </View>
 
@@ -40,7 +40,7 @@ export const CyberpunkStatCard: React.FC<CyberpunkStatCardProps> = ({
         {/* Connecting Line from Left Icon */}
         <View style={styles.connectorLine}>
             <Svg height={20} width={40}>
-                <Polyline points="0,10 20,10 30,20" fill="none" stroke="white" strokeWidth={1} />
+                <Polyline points="0,10 20,10 30,20" fill="none" stroke="#00E5FF" strokeWidth={1} />
             </Svg>
         </View>
 
@@ -125,16 +125,16 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: -15,
     right: 0,
-    color: 'white',
+    color: '#00E5FF',
     fontSize: 8,
-    backgroundColor: 'black',
+    backgroundColor: '#0A0B10',
     paddingHorizontal: 2,
   },
   innerContent: {
     // 
   },
   valueText: {
-    color: 'white',
+    color: 'white', // Keep value white for readability
     fontSize: 32,
     fontWeight: 'bold',
   },
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
   stripe: {
     width: 3,
     height: 4,
-    backgroundColor: '#fff',
+    backgroundColor: '#00E5FF',
     marginRight: 2,
     transform: [{ skewX: '-30deg' }],
   },

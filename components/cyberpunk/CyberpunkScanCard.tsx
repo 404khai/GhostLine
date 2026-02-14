@@ -19,14 +19,14 @@ export const CyberpunkScanCard: React.FC<CyberpunkScanCardProps> = ({
       <View style={styles.leftGraphic}>
         <Svg width={80} height={150}>
            {/* Target Circle */}
-           <Circle cx={30} cy={80} r={15} stroke="white" strokeWidth={2} fill="none" />
-           <Circle cx={30} cy={80} r={5} fill="#333" />
+           <Circle cx={30} cy={80} r={15} stroke={Colors.cyberpunk.primary} strokeWidth={2} fill="none" />
+           <Circle cx={30} cy={80} r={5} fill={Colors.cyberpunk.card} />
            {/* Crosshairs */}
-           <Line x1={10} y1={80} x2={50} y2={80} stroke="white" strokeWidth={1} />
-           <Line x1={30} y1={60} x2={30} y2={100} stroke="white" strokeWidth={1} />
+           <Line x1={10} y1={80} x2={50} y2={80} stroke={Colors.cyberpunk.primary} strokeWidth={1} />
+           <Line x1={30} y1={60} x2={30} y2={100} stroke={Colors.cyberpunk.primary} strokeWidth={1} />
            {/* Diagonal ticks around circle */}
-           <Line x1={20} y1={70} x2={15} y2={65} stroke="white" strokeWidth={1} />
-           <Line x1={40} y1={90} x2={45} y2={95} stroke="white" strokeWidth={1} />
+           <Line x1={20} y1={70} x2={15} y2={65} stroke={Colors.cyberpunk.primary} strokeWidth={1} />
+           <Line x1={40} y1={90} x2={45} y2={95} stroke={Colors.cyberpunk.primary} strokeWidth={1} />
            
            {/* Connecting Line to the text box */}
            {/* Starts from target, goes right, then up/down to the box */}
@@ -34,7 +34,7 @@ export const CyberpunkScanCard: React.FC<CyberpunkScanCardProps> = ({
            <Polyline 
              points="45,80 60,80 80,40" 
              fill="none" 
-             stroke="white" 
+             stroke={Colors.cyberpunk.primary} 
              strokeWidth={1} 
            />
         </Svg>
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   headerText: {
-    color: 'white',
+    color: Colors.cyberpunk.primary,
     fontSize: 18,
     fontWeight: 'bold',
     letterSpacing: 1,
