@@ -26,7 +26,7 @@ export default function GhostlineSplashScreen() {
   }, []);
 
   // Neon Green Color
-  const neonGreen = '#39FF14'; 
+  const neonGreen = '#00E5FF'; 
   
   // Dimensions
   const inset = 15;
@@ -159,7 +159,7 @@ export default function GhostlineSplashScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#050505',
+    backgroundColor: '#0A0B10',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
     marginBottom: 40,
-    shadowColor: '#39FF14',
+    shadowColor: '#00E5FF',
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.8,
     shadowRadius: 20,
@@ -189,11 +189,11 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   title: {
-    color: '#39FF14',
+    color: '#00E5FF',
     fontSize: 48,
     fontFamily: 'PixelifySans_400Regular',
     letterSpacing: 8,
-    textShadowColor: 'rgba(57, 255, 20, 0.8)',
+    textShadowColor: 'rgba(0, 229, 255, 0.8)',
     textShadowOffset: { width: 0, height: 0 },
     textShadowRadius: 20,
   }

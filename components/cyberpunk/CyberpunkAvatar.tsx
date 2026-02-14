@@ -1,3 +1,4 @@
+import { Colors } from '@/constants/theme';
 import React from 'react';
 import { ImageSourcePropType, StyleSheet, View } from 'react-native';
 import Svg, { ClipPath, Defs, Path, Rect, Image as SvgImage } from 'react-native-svg';
@@ -33,7 +34,7 @@ export const CyberpunkAvatar: React.FC<CyberpunkAvatarProps> = ({ source, size =
 
   const cut = size * 0.15; // 15% corner cut
   const strokeWidth = 2;
-  const color = "#39FF14"; // Cyan/Blue from the image
+  const color = Colors.cyberpunk.primary; // Cyan/Blue from the image
 
   // Shape Logic
   // Main octagon-like shape (chamfered box)
@@ -113,7 +114,7 @@ export const CyberpunkAvatar: React.FC<CyberpunkAvatarProps> = ({ source, size =
       {online && (
         <View style={styles.onlineBadge}>
             <Svg width={14} height={14}>
-                <Rect x={2} y={2} width={10} height={10} fill="#39FF14" stroke="black" strokeWidth={2} transform="rotate(45, 7, 7)" />
+                <Rect x={2} y={2} width={10} height={10} fill="#00E5FF" stroke="#0A0B10" strokeWidth={2} transform="rotate(45, 7, 7)" />
             </Svg>
         </View>
       )}

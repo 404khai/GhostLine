@@ -1,5 +1,6 @@
 import { CyberpunkButton } from '@/components/cyberpunk/CyberpunkButton';
 import { CyberpunkScanCard } from '@/components/cyberpunk/CyberpunkScanCard';
+import { Colors } from '@/constants/theme';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -10,7 +11,7 @@ export default function GridScreen() {
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>GRID</Text>
-        <Ionicons name="grid-outline" size={24} color="#39FF14" />
+        <Ionicons name="grid-outline" size={24} color={Colors.cyberpunk.primary} />
       </View>
 
       <ScrollView contentContainerStyle={styles.content}>
@@ -18,25 +19,25 @@ export default function GridScreen() {
         <View style={styles.actionsGrid}>
             <View style={styles.actionItem}>
                 <View style={styles.iconCircle}>
-                    <Ionicons name="qr-code-outline" size={28} color="#39FF14" />
+                    <Ionicons name="qr-code-outline" size={28} color={Colors.cyberpunk.primary} />
                 </View>
                 <Text style={styles.actionLabel}>SCAN IDENTITY</Text>
             </View>
             <View style={styles.actionItem}>
                 <View style={styles.iconCircle}>
-                    <Ionicons name="people-outline" size={28} color="#39FF14" />
+                    <Ionicons name="people-outline" size={28} color={Colors.cyberpunk.primary} />
                 </View>
                 <Text style={styles.actionLabel}>NEARBY USERS</Text>
             </View>
             <View style={styles.actionItem}>
                 <View style={styles.iconCircle}>
-                    <Ionicons name="wifi-outline" size={28} color="#39FF14" />
+                    <Ionicons name="wifi-outline" size={28} color={Colors.cyberpunk.primary} />
                 </View>
                 <Text style={styles.actionLabel}>PUBLIC FREQ</Text>
             </View>
             <View style={styles.actionItem}>
                 <View style={styles.iconCircle}>
-                    <Ionicons name="globe-outline" size={28} color="#39FF14" />
+                    <Ionicons name="globe-outline" size={28} color={Colors.cyberpunk.primary} />
                 </View>
                 <Text style={styles.actionLabel}>RELAY CHANNELS</Text>
             </View>
@@ -70,7 +71,7 @@ export default function GridScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: Colors.cyberpunk.background,
   },
   header: {
     flexDirection: 'row',
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontFamily: 'Doto_700Bold',
     fontSize: 24,
-    color: '#39FF14',
+    color: Colors.cyberpunk.primary,
   },
   content: {
     padding: 20,

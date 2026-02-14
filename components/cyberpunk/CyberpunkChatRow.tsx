@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     fontFamily: 'GeistPixelSquare',
   },
   badge: {
-    backgroundColor: '#39FF14',
+    backgroundColor: '#00E5FF',
     borderRadius: 10,
     minWidth: 20,
     height: 20,
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   badgeText: {
-    color: 'black',
+    color: '#0A0B10',
     fontSize: 10,
     fontWeight: 'bold',
   },

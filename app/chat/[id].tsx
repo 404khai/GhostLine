@@ -1,9 +1,8 @@
-import { View, Text, StyleSheet, SafeAreaView, TextInput, TouchableOpacity, ScrollView } from 'react-native';
-import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
 import { CyberpunkAvatar } from '@/components/cyberpunk/CyberpunkAvatar';
-import { CyberpunkDangerBox } from '@/components/cyberpunk/CyberpunkDangerBox';
+import { Ionicons } from '@expo/vector-icons';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useState } from 'react';
+import { SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 // Mock Messages
 const INITIAL_MESSAGES = [
@@ -95,7 +94,7 @@ export default function ChatDetailScreen() {
       {/* Input Area */}
       <View style={styles.inputContainer}>
         <TouchableOpacity style={styles.attachButton}>
-          <Ionicons name="add" size={24} color="#39FF14" />
+          <Ionicons name="add" size={24} color={Colors.cyberpunk.primary} />
         </TouchableOpacity>
         <TextInput 
           style={styles.input} 

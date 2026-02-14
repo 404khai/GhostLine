@@ -27,7 +27,7 @@ const CHATS = [
   { id: '1', name: 'Terry Curtis', message: 'Found a gig for cheap chrome...', time: '02:11', unread: 2, source: user1 },
   { id: '2', name: 'Zoe Zaine', message: 'New Sandevistans incoming 4pm..', time: '02:11', unread: 0, source: user2 },
   { id: '3', name: 'AX', message: 'Gotta tread carefully choom...', time: '02:11', unread: 2, source: user3 },
-  { id: '4', name: 'Rhea M', message: 'You\'re now an admin', time: '02:11', unread: 0, source: user5 },
+  { id: '4', name: 'Rhea M', message: 'The Endministrator has files...', time: '02:11', unread: 0, source: user5 },
   { id: '5', name: 'The Wasp', message: 'Implants arrived in one piece, b...', time: '02:11', unread: 0, source: user6 },
   
 ];
@@ -43,7 +43,7 @@ export default function ChatsScreen() {
       <View style={styles.header}>
         <Text style={styles.headerTitle}>LINKS</Text>
         <TouchableOpacity style={styles.searchButton}>
-          <Ionicons name="search" size={24} color="#39FF14" />
+          <Ionicons name="search" size={24} color={Colors.cyberpunk.primary} />
         </TouchableOpacity>
       </View>
 
@@ -54,15 +54,15 @@ export default function ChatsScreen() {
             {STORIES.map((story, index) => (
               <View key={story.id} style={styles.storyItem}>
                 {story.isAdd ? (
-                  <CyberpunkAvatar size={60} backgroundColor="#000000ff">
-                    <Ionicons name="add" size={30} color="#39FF14" />
+                  <CyberpunkAvatar size={60} backgroundColor="#0A0B10">
+                    <Ionicons name="add" size={30} color="#00E5FF" />
                   </CyberpunkAvatar>
                 ) : (
                   <CyberpunkAvatar source={story.source!} size={60} online={true} />
                 )}
                 <Text style={styles.storyName}>{story.name}</Text>
                 {/* Latency indicator */}
-                {!story.isAdd && <Text style={{ fontSize: 10, color: '#39FF14', fontFamily: 'monospace' }}>12ms</Text>}
+                {!story.isAdd && <Text style={{ fontSize: 10, color: '#00E5FF', fontFamily: 'monospace' }}>12ms</Text>}
               </View>
             ))}
           </ScrollView>
@@ -71,7 +71,7 @@ export default function ChatsScreen() {
         {/* Chats Section Header */}
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>ACTIVE FEEDS</Text>
-          <Ionicons name="ellipsis-horizontal" size={20} color="#666" />
+          <Ionicons name="ellipsis-horizontal" size={20} color={Colors.cyberpunk.text} />
         </View>
 
         {/* Chats List */}
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   headerTitle: {
-    color: '#39FF14',
+    color: '#00E5FF',
     fontSize: 24,
     fontFamily: 'Doto_700Bold',
   },
