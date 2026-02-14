@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Colors } from '@/constants/theme';
 import { CyberpunkAvatar } from './CyberpunkAvatar';
 
 interface CyberpunkChatRowProps {
@@ -21,6 +22,7 @@ export const CyberpunkChatRow: React.FC<CyberpunkChatRowProps> = ({
 }) => {
   return (
     <TouchableOpacity onPress={onPress} activeOpacity={0.7} style={styles.container}>
+      {unreadCount > 0 && <View style={styles.leftBar} />}
       {/* Avatar */}
       <CyberpunkAvatar source={avatarSource} size={50} online={true} />
 
@@ -53,6 +55,15 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     paddingHorizontal: 20,
     backgroundColor: 'rgba(0,0,0,0.5)',
+    position: 'relative',
+  },
+  leftBar: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    bottom: 0,
+    width: 4,
+    backgroundColor: Colors.cyberpunk.warning,
   },
   content: {
     flex: 1,
@@ -79,7 +90,7 @@ const styles = StyleSheet.create({
     fontFamily: 'GeistPixelSquare',
   },
   badge: {
-    backgroundColor: '#00E5FF',
+    backgroundColor: Colors.cyberpunk.primary,
     borderRadius: 10,
     minWidth: 20,
     height: 20,
@@ -88,7 +99,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   badgeText: {
-    color: '#0A0B10',
+    color: Colors.cyberpunk.background,
     fontSize: 10,
     fontWeight: 'bold',
   },

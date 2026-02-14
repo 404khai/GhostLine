@@ -1,10 +1,11 @@
 import { CyberpunkAvatar } from '@/components/cyberpunk/CyberpunkAvatar';
 import { CyberpunkButton } from '@/components/cyberpunk/CyberpunkButton';
 import { CyberpunkChatRow } from '@/components/cyberpunk/CyberpunkChatRow';
+import { Colors } from '@/constants/theme';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 // Mock Data
 const user1 = require('@/assets/images/user1.jpeg');
@@ -39,16 +40,33 @@ export default function ChatsScreen() {
     <SafeAreaView style={styles.container}>
       <StatusBar style="light" />
       
-      {/* Header */}
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>LINKS</Text>
-        <TouchableOpacity style={styles.searchButton}>
-          <Ionicons name="search" size={24} color={Colors.cyberpunk.primary} />
-        </TouchableOpacity>
+      <View style={styles.hero}>
+        <View style={styles.heroTop}>
+          <View>
+            <Text style={styles.protocol}>Protocol: GhostLine v.4.0.2</Text>
+            <Text style={styles.heroTitle}>
+              PEERS <Text style={styles.heroTitleAccent}>ONLINE</Text>
+            </Text>
+          </View>
+          <View style={styles.heroRight}>
+            <Text style={styles.sysReady}>SYS_READY</Text>
+            <Text style={styles.ipAddr}>192.168.0.254</Text>
+          </View>
+        </View>
+        <View style={styles.heroMeter}>
+          <View style={styles.meterLine} />
+          <View style={styles.meterDot} />
+          <View style={[styles.meterLine, { width: 48 }]} />
+        </View>
+      </View>
+
+      <View style={styles.netBar}>
+        <Text style={styles.netBarText}>Grid Status: Active</Text>
+        <Text style={styles.netBarText}>• 10.4 kb/s</Text>
+        <Text style={styles.netBarText}>Uptime: 04:12:44</Text>
       </View>
 
       <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
-        {/* Stories Section (Now Proximity/Active) */}
         <View style={styles.storiesContainer}>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: 20 }}>
             {STORIES.map((story, index) => (
@@ -61,20 +79,17 @@ export default function ChatsScreen() {
                   <CyberpunkAvatar source={story.source!} size={60} online={true} />
                 )}
                 <Text style={styles.storyName}>{story.name}</Text>
-                {/* Latency indicator */}
                 {!story.isAdd && <Text style={{ fontSize: 10, color: '#00E5FF', fontFamily: 'monospace' }}>12ms</Text>}
               </View>
             ))}
           </ScrollView>
         </View>
 
-        {/* Chats Section Header */}
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>ACTIVE FEEDS</Text>
           <Ionicons name="ellipsis-horizontal" size={20} color={Colors.cyberpunk.text} />
         </View>
 
-        {/* Chats List */}
         <View style={styles.listContainer}>
           {CHATS.map((chat) => (
             <CyberpunkChatRow
@@ -90,13 +105,12 @@ export default function ChatsScreen() {
         </View>
       </ScrollView>
 
-      {/* Floating Action Button (New Chat) */}
       <View style={styles.fabContainer}>
          <CyberpunkButton 
-            label="NEW CHAT" 
-            value="INIT" 
+            label="INITIATE LINK" 
+            value="LINK" 
             onPress={() => router.push('/modal/new-chat')} 
-            style={{ width: '100%' }} // Let it take width but aligned right
+            style={{ width: '100%' }} 
          />
       </View>
     </SafeAreaView>
@@ -106,23 +120,83 @@ export default function ChatsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: Colors.cyberpunk.background,
   },
-  header: {
+  hero: {
+    paddingHorizontal: 20,
+    paddingTop: 40,
+    paddingBottom: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#0c0d14',
+  },
+  heroTop: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    marginBottom: 8,
+  },
+  protocol: {
+    color: 'rgba(0,229,255,0.6)',
+    fontSize: 10,
+    textTransform: 'uppercase',
+    letterSpacing: 3,
+    fontWeight: '700',
+  },
+  heroTitle: {
+    color: 'white',
+    fontSize: 28,
+    fontWeight: '700',
+    letterSpacing: -0.5,
+  },
+  heroTitleAccent: {
+    color: Colors.cyberpunk.primary,
+  },
+  heroRight: {
+    alignItems: 'flex-end',
+  },
+  sysReady: {
+    color: Colors.cyberpunk.warning,
+    fontSize: 12,
+    fontFamily: 'monospace',
+  },
+  ipAddr: {
+    color: 'rgba(255,255,255,0.4)',
+    fontSize: 10,
+    fontFamily: 'monospace',
+  },
+  heroMeter: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginTop: 8,
+  },
+  meterLine: {
+    height: 2,
+    flex: 1,
+    backgroundColor: 'rgba(0,25,255,0.4)',
+  },
+  meterDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: Colors.cyberpunk.primary,
+  },
+  netBar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingTop: 40,
-    paddingBottom: 20,
+    paddingVertical: 8,
+    borderBottomWidth: 1,
+    borderTopWidth: 1,
+    borderColor: 'rgba(0,25,255,0.2)',
+    backgroundColor: 'rgba(0,25,255,0.1)',
   },
-  headerTitle: {
-    color: '#00E5FF',
-    fontSize: 24,
-    fontFamily: 'Doto_700Bold',
-  },
-  searchButton: {
-    padding: 5,
+  netBarText: {
+    fontSize: 10,
+    color: 'rgba(0,229,255,0.8)',
+    fontWeight: '700',
+    textTransform: 'uppercase',
   },
   storiesContainer: {
     paddingVertical: 20,
